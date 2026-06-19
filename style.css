@@ -1,0 +1,304 @@
+/* SAVEECO Executive Copilot — style.css
+   IMPORTANT: Never use min-height:100vh on body inside a Zoho iframe.
+   The iframe has no explicit height from the host; 100vh collapses to 0
+   and hides all content. Use height:auto and let content push the frame. */
+
+:root {
+  --blue-900: #0a1628;
+  --blue-800: #0f2244;
+  --blue-700: #153668;
+  --blue-600: #1a4a8a;
+  --blue-500: #1e5fad;
+  --blue-400: #2675d1;
+  --blue-300: #5c9de8;
+  --blue-200: #a8ccf5;
+  --blue-100: #d6eaff;
+  --blue-50:  #eef5ff;
+  --gray-900: #111827;
+  --gray-500: #6b7280;
+  --gray-400: #9ca3af;
+  --gray-200: #e5e7eb;
+  --gray-100: #f3f4f6;
+  --gray-50:  #f9fafb;
+  --white:    #ffffff;
+  --green-500:#16a34a;
+  --green-100:#dcfce7;
+  --amber-500:#d97706;
+  --amber-100:#fef3c7;
+  --red-500:  #dc2626;
+  --red-100:  #fee2e2;
+  --pad: 18px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; }
+
+/* height:auto — NOT min-height:100vh */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── VERIFY BANNER ── */
+#verify-banner {
+  background: #16a34a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+/* ── CONTAINER ── */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--blue-800);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--pad);
+  height: 56px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--blue-700);
+}
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+}
+.brand-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+}
+.brand-sub {
+  font-size: 11px;
+  color: var(--blue-200);
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.last-updated {
+  font-size: 11px;
+  color: var(--blue-300);
+}
+.refresh-btn {
+  background: var(--blue-600);
+  color: var(--white);
+  border: 1px solid var(--blue-500);
+  border-radius: var(--r-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.refresh-btn:hover    { background: var(--blue-500); }
+.refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── EXEC BANNER ── */
+.exec-banner {
+  background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-500) 100%);
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.exec-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-200);
+  margin-bottom: 4px;
+}
+.exec-headline {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.3px;
+}
+.exec-sub {
+  font-size: 12px;
+  color: var(--blue-200);
+  margin-top: 3px;
+}
+.exec-banner-right {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.exec-stat         { text-align: right; }
+.exec-stat-value   { font-size: 20px; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+.exec-stat-label   { font-size: 10px; color: var(--blue-200); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 2px; }
+.health-dot        { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot {
+  0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  50%     { opacity:.85; box-shadow: 0 0 0 4px rgba(74,222,128,0); }
+}
+
+/* ── LOADING OVERLAY ── */
+.loading-overlay {
+  display: none; /* shown via JS */
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.9);
+  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.spinner {
+  width: 38px; height: 38px;
+  border: 3px solid var(--blue-100);
+  border-top-color: var(--blue-500);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 13px; color: var(--gray-500); font-weight: 500; }
+
+/* ── DASHBOARD ── */
+.dashboard {
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: auto;
+}
+
+/* ── SECTION CARD ── */
+.section-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  box-shadow: 0 2px 8px rgba(15,34,68,0.06);
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.section-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.icon-sales       { background: var(--blue-50);  color: var(--blue-500); }
+.icon-projects    { background: #eff6ff;          color: #3b82f6; }
+.icon-procurement { background: #f0fdf4;          color: var(--green-500); }
+.icon-health      { background: #fff7ed;          color: #ea580c; }
+
+.section-title     { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+.section-sub       { font-size: 11px; color: var(--gray-500); margin-top: 1px; }
+.section-badge     { margin-left: auto; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--green-100); color: var(--green-500); flex-shrink: 0; }
+
+/* ── KPI ROW ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+.kpi-tile {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 5px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.15s;
+}
+.kpi-tile::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent, var(--blue-400));
+  border-radius: var(--r-md) var(--r-md) 0 0;
+}
+.kpi-tile:hover { border-color: var(--blue-200); }
+.kpi-icon  { font-size: 17px; line-height: 1; }
+.kpi-value { font-size: 26px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.6px; line-height: 1; }
+.kpi-label { font-size: 10px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; }
+.kpi-delta { font-size: 11px; color: var(--gray-400); }
+
+/* ── HEALTH GRID ── */
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.health-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--r-md);
+  padding: 14px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.health-label  { font-size: 10px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; }
+.health-status { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: var(--gray-900); }
+.status-dot    { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.status-healthy  { background: var(--green-500); }
+.status-warning  { background: var(--amber-500); }
+.status-critical { background: var(--red-500); }
+.health-detail { font-size: 11px; color: var(--gray-400); line-height: 1.4; }
+.health-pill   { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; align-self: flex-start; }
+.pill-healthy  { background: var(--green-100); color: var(--green-500); }
+.pill-warning  { background: var(--amber-100); color: var(--amber-500); }
+.pill-critical { background: var(--red-100);   color: var(--red-500); }
+
+/* ── ERROR ── */
+.error-msg { color: var(--red-500); font-size: 12px; padding: 8px 0; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 10px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+.footer-version { color: var(--gray-400); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 500px) {
+  :root { --pad: 12px; }
+  .exec-banner-right  { display: none; }
+  .exec-headline      { font-size: 14px; }
+  .last-updated       { display: none; }
+  .kpi-value          { font-size: 20px; }
+}
+@media (max-width: 360px) {
+  .brand-name { font-size: 11px; }
+  .brand-sub  { display: none; }
+}

@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "platform_versions": ["crm/v2"],
+  "info": {
+    "title":       "Exec Copilot",
+    "description": "Home Page Dashboard widget for SAVEECO Energy India Pvt Ltd",
+    "version":     "1.0",
+    "vendor":      "SAVEECO Energy India Pvt Ltd",
+    "locale":      "en_US"
+  },
+  "ui_location": [
+    {
+      "type":     "homePage",
+      "location": "crm.homepageModule.view",
+      "meta": {
+        "display_name": "Exec Copilot",
+        "description":  "Executive KPI dashboard",
+        "icon":         "icon.png"
+      }
+    }
+  ],
+  "permissions": []
+}
