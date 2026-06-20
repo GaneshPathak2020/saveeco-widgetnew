@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "platform_versions": ["crm/v2"],
+  "info": {
+    "title":       "Exec Copilot",
+    "description": "Executive Command Center for SAVEECO Energy India Pvt Ltd — Real-time CRM KPI dashboard",
+    "version":     "3.0",
+    "vendor":      "SAVEECO Energy India Pvt Ltd",
+    "locale":      "en_US"
+  },
+  "ui_location": [
+    {
+      "type":     "homePage",
+      "location": "crm.homepageModule.view",
+      "meta": {
+        "display_name": "Exec Copilot",
+        "description":  "Real-time executive KPI dashboard",
+        "icon":         "icon.png"
+      }
+    }
+  ],
+  "permissions": [
+    "ZohoCRM.modules.ALL.READ",
+    "ZohoCRM.modules.leads.READ",
+    "ZohoCRM.modules.accounts.READ",
+    "ZohoCRM.modules.deals.READ",
+    "ZohoCRM.functions.execute",
+    "ZohoCRM.settings.READ"
+  ]
+}
